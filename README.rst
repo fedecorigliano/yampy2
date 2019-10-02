@@ -29,7 +29,7 @@ Install with pip::
 
 Or manually::
 
-    git clone git://github.com/tonybaloney/yam-python.git
+    git clone git://github.com/fedecorigliano/yam-python.git
     cd yam-python
     python setup.py install
 
