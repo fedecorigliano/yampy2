@@ -20,19 +20,22 @@ class GroupsAPI(object):
             none_filter, stringify_booleans,
         )
 
-    def all(self, mine=None, reverse=None):
+    def all(self, page=None, mine=None, reverse=None):
         """
         Returns all the groups in the current user's network.
 
         Customize the response using the keyword arguments:
 
+        * page -- Enable pagination, and return the nth page of 50 groups.
         * mine -- Only return group of current user.
-        * reverse -- return group in descending order by name.
+        * reverse -- return group in descending order by name.        
+
         """
-        return self._client.get("/search", **self._argument_converter(
+        return self._client.get("/groups", **self._argument_converter(
+            page=page,
             mine=mine,
             reverse=reverse,
-        ))['groups']
+        ))
 
     def find(self, group_id):
         """
