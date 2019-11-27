@@ -95,7 +95,6 @@ class MessagesAPI(object):
                                         older_than,
                                         newer_than,
                                         limit, threaded)
-    
 
     def from_followed_conversations(self, older_than=None, newer_than=None,
                                     limit=None, threaded=None):
@@ -189,9 +188,9 @@ class MessagesAPI(object):
         """
         path = "/messages/about_topic/%d" % extract_id(topic_id)
         return self._get_paged_messages(path,
-                                        older_than,
-                                        newer_than,
-                                        limit, threaded)
+                                        older_than=None,
+                                        newer_than=None,
+                                        limit=None, threaded=None)
 
     def find(self, message_id):
         """
@@ -199,9 +198,9 @@ class MessagesAPI(object):
         """
         path = "/messages/%d" % extract_id(message_id)
         return self._get_paged_messages(path,
-                                        older_than,
-                                        newer_than,
-                                        limit, threaded)
+                                        older_than=None,
+                                        newer_than=None,
+                                        limit=None, threaded=None)
 
     def create(self, body, group_id=None, replied_to_id=None,
                direct_to_id=None, topics=[], broadcast=None,
