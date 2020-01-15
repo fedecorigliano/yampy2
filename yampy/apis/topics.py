@@ -40,9 +40,9 @@ class TopicsAPI(object):
             none_filter,
         )
 
-    def topic(self, topic_id):
+    def find(self, topic_id):
         """
-        Returns the users that have used the topic specified by the numeric topic_id.
+        Returns the topic identified by the given topic_id.
         """
         path = "/topics/%d" % topic_id
         return self._client.get(path, **self._argument_converter(
