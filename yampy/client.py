@@ -56,6 +56,15 @@ class Client(object):
         """
         return self._request("post", path, **kwargs)
 
+    def post_with_data(self, path, headers, data, fixed_path, **kwargs):
+        """
+        Makes an HTTP POST request to the Yammer API. Any keyword arguments
+        will be sent as the body of the request.
+
+        The path should be the path of an API endpoint, e.g. "/messages"
+        """
+        return self._request_with_data("post", path, headers, data, fixed_path, **kwargs)
+
     def put(self, path, **kwargs):
         """
         Makes an HTTP PUT request to the Yammer API. Any keyword arguments will
@@ -78,6 +87,17 @@ class Client(object):
             method=method,
             url=self._build_url(path),
             headers=self._build_headers(),
+            proxies=self._proxies,
+            params=kwargs,
+        )
+        return self._parse_response(response)
+
+    def _request_with_data(self, method, path, headers, data, fixed_path, **kwargs):
+        response = requests.request(
+            method=method,
+            url=self._base_url + path if fixed_path else self._build_url(path),
+            headers={**self._build_headers(), **headers},
+            data=data,
             proxies=self._proxies,
             params=kwargs,
         )
